@@ -8,7 +8,7 @@ import { PARTICLES } from '../utils/constants';
  * Organic particle field that starts as scattered particles
  * and morphs to follow terrain shape as progress increases.
  */
-export default function ParticleField({ progress = 0, isMobile = false }) {
+export default function ParticleField({ progress = 0, isMobile = false, isLight = false }) {
   const pointsRef = useRef();
   const count = isMobile ? PARTICLES.COUNT_MOBILE : PARTICLES.COUNT;
 
@@ -19,12 +19,10 @@ export default function ParticleField({ progress = 0, isMobile = false }) {
     const sizes = new Float32Array(count);
 
     for (let i = 0; i < count; i++) {
-      // Random scattered positions
       randomPos[i * 3] = (Math.random() - 0.5) * spread * 2;
       randomPos[i * 3 + 1] = (Math.random() - 0.5) * spread;
       randomPos[i * 3 + 2] = (Math.random() - 0.5) * spread * 2;
 
-      // Terrain-following positions
       const x = (Math.random() - 0.5) * spread;
       const z = (Math.random() - 0.5) * spread;
       const h = simplex.fbm(x * 0.08, z * 0.08, 4, 2.0, 0.5) * 3.5;
@@ -44,7 +42,6 @@ export default function ParticleField({ progress = 0, isMobile = false }) {
     const arr = posAttr.array;
     const time = state.clock.elapsedTime;
 
-    // Lerp between random and terrain positions based on progress
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
       const t = Math.min(1, Math.max(0, progress));
@@ -53,14 +50,11 @@ export default function ParticleField({ progress = 0, isMobile = false }) {
       arr[i3 + 1] = THREE.MathUtils.lerp(randomPositions[i3 + 1], terrainPositions[i3 + 1], t);
       arr[i3 + 2] = THREE.MathUtils.lerp(randomPositions[i3 + 2], terrainPositions[i3 + 2], t);
 
-      // Subtle floating motion when scattered
       const floatAmount = (1 - t) * 0.3;
       arr[i3 + 1] += Math.sin(time * 0.5 + i * 0.1) * floatAmount;
     }
 
     posAttr.needsUpdate = true;
-
-    // Slow rotation
     pointsRef.current.rotation.y = time * 0.02 * (1 - progress * 0.8);
   });
 
@@ -80,12 +74,12 @@ export default function ParticleField({ progress = 0, isMobile = false }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.05}
-        color="#7af0a0"
+        color={isLight ? '#15803d' : '#7af0a0'}
         transparent
-        opacity={0.6}
+        opacity={isLight ? 0.5 : 0.6}
         sizeAttenuation
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={isLight ? THREE.NormalBlending : THREE.AdditiveBlending}
       />
     </points>
   );

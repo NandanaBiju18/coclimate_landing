@@ -1,13 +1,26 @@
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import ParticleField from '../three/ParticleField';
 import TerrainMesh from '../three/TerrainMesh';
 import GrowingTree from '../three/GrowingTree';
 
 /**
- * Hero Scene: Particles coalesce into terrain, and 3D forest trees emerge across the landscape.
+ * Hero Scene: Theme-aware 3D canvas rendering clean fog and terrain in both Light and Dark modes.
  */
 export default function HeroScene({ progress = 0, isMobile = false }) {
+  const [isLight, setIsLight] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsLight(document.documentElement.getAttribute('data-theme') === 'light');
+    };
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+
   const particleProgress = Math.min(1, progress * 2);
   const terrainProgress = Math.max(0, (progress - 0.2) / 0.8);
   const treeProgress = Math.max(0, (progress - 0.35) / 0.65);
@@ -21,6 +34,10 @@ export default function HeroScene({ progress = 0, isMobile = false }) {
     { pos: [-4.2, -0.4, -1], scale: 0.75, delay: 0.3 },
   ];
 
+  const fogColor = isLight ? '#FBF6EB' : '#0E1712';
+  const terrainColor1 = isLight ? '#4ade80' : '#061c10';
+  const terrainColor2 = isLight ? '#15803d' : '#123a22';
+
   return (
     <Canvas
       camera={{ position: [0, 5, 13], fov: isMobile ? 60 : 50 }}
@@ -29,16 +46,16 @@ export default function HeroScene({ progress = 0, isMobile = false }) {
       style={{ background: 'transparent' }}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 8, 5]} intensity={0.8} color="#a7f3d0" />
-        <directionalLight position={[-4, 4, -4]} intensity={0.25} color="#065f46" />
-        <pointLight position={[0, 4, 0]} intensity={0.5} color="#34d399" distance={12} />
-        <fog attach="fog" args={['#050B07', 10, 36]} />
+        <ambientLight intensity={isLight ? 0.8 : 0.4} />
+        <directionalLight position={[5, 8, 5]} intensity={isLight ? 1.2 : 0.8} color={isLight ? '#22c55e' : '#a7f3d0'} />
+        <directionalLight position={[-4, 4, -4]} intensity={0.25} color={isLight ? '#15803d' : '#065f46'} />
+        <pointLight position={[0, 4, 0]} intensity={isLight ? 0.8 : 0.5} color="#34d399" distance={12} />
+        <fog attach="fog" args={[fogColor, 10, 36]} />
 
-        <ParticleField progress={particleProgress} isMobile={isMobile} />
+        <ParticleField progress={particleProgress} isMobile={isMobile} isLight={isLight} />
         
         {terrainProgress > 0 && (
-          <TerrainMesh progress={terrainProgress} color1="#061c10" color2="#123a22" />
+          <TerrainMesh progress={terrainProgress} color1={terrainColor1} color2={terrainColor2} />
         )}
 
         {treeProgress > 0 && heroTrees.map((t, i) => {
