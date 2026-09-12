@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState, lazy, Suspense } from 'react';
-import StatementReveal from '../components/StatementReveal';
 import MagneticButton from '../components/MagneticButton';
 import './ActOne.css';
 
@@ -54,25 +53,44 @@ export default function ActOne({ isMobile = false }) {
 
       <div className="act-one__content">
         <div className="act-one__hero-text">
-          <StatementReveal
-            text="The planet doesn't need promises."
-            className="t-display act-one__headline"
-            tag="h1"
-          />
-          <StatementReveal
-            text="It needs proof."
-            className="t-display act-one__headline act-one__headline--accent"
-            tag="h1"
-            delay={600}
-          />
+          <div className="badge-glow act-one__float-slow">
+            <span className="badge-glow__dot" />
+            <span>Paradigm Shift in Environmental Auditing</span>
+          </div>
+
+          {/* Constant motion headline — no scroll drop-down reveal */}
+          <h1 className="t-display act-one__headline act-one__headline--constant-motion">
+            The planet doesn't need promises.
+          </h1>
+          <h1 className="t-display act-one__headline act-one__headline--accent act-one__headline--constant-motion-accent">
+            It needs proof.
+          </h1>
           
-          <p className="t-subheading act-one__sub" style={{ opacity: 0, animation: 'fadeInUp 1s ease 0.8s forwards' }}>
+          <p className="t-subheading act-one__sub act-one__float-slow-delay">
             Land-based climate projects, fully monitored with technology. Carbon-free zones, green auditing, and carbon credit pre-certification — with proofs you can verify.
           </p>
 
-          <div className="act-one__cta-group" style={{ opacity: 0, animation: 'fadeInUp 1s ease 1.2s forwards' }}>
+          <div className="act-one__cta-group">
             <MagneticButton href="#contact">Schedule a Call</MagneticButton>
-            <MagneticButton href="#how-it-works" className="magnetic-btn--outline">See How It Works</MagneticButton>
+            <MagneticButton href="#calculator" className="magnetic-btn--outline">Simulate Impact</MagneticButton>
+          </div>
+
+          {/* Hero Live Metric Ticker with constant floating pulse */}
+          <div className="act-one__ticker act-one__ticker--float">
+            <div className="act-one__ticker-item">
+              <span className="act-one__ticker-val">12,480+</span>
+              <span className="act-one__ticker-lbl">Trees Verified</span>
+            </div>
+            <div className="act-one__ticker-dot">•</div>
+            <div className="act-one__ticker-item">
+              <span className="act-one__ticker-val">94.1%</span>
+              <span className="act-one__ticker-lbl">Survival Rate</span>
+            </div>
+            <div className="act-one__ticker-dot">•</div>
+            <div className="act-one__ticker-item">
+              <span className="act-one__ticker-val">100%</span>
+              <span className="act-one__ticker-lbl">Cryptographic Proof</span>
+            </div>
           </div>
         </div>
       </div>
