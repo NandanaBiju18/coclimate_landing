@@ -104,14 +104,15 @@
   animation: satRayPulse 2.5s infinite ease-in-out;
 }
 
-@keyframes hotspotPulse {
-  0% { transform: scale(0.8); opacity: 0.8; }
-  100% { transform: scale(1.6); opacity: 0; }
+@keyframes hotspotDiamondPulse {
+  0% { transform: scale(0.75) rotate(0deg); opacity: 0.9; }
+  50% { transform: scale(1.3) rotate(45deg); opacity: 0.4; }
+  100% { transform: scale(1.7) rotate(90deg); opacity: 0; }
 }
 
-.hotspot-pulse {
+.hotspot-diamond-pulse {
   transform-origin: center;
-  animation: hotspotPulse 2s infinite ease-out;
+  animation: hotspotDiamondPulse 2.2s infinite cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Panel Right Column */
