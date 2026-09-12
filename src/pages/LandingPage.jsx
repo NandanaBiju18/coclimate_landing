@@ -4,7 +4,6 @@ import Preloader from '../components/Preloader';
 import Navigation from '../components/Navigation';
 import ScrollProgress from '../components/ScrollProgress';
 import ClimateBackground from '../components/ClimateBackground';
-import TreeAuditDiagram from '../components/TreeAuditDiagram';
 import ImpactCalculator from '../components/ImpactCalculator';
 import ActOne from '../sections/ActOne';
 import ActTwo from '../sections/ActTwo';
@@ -41,10 +40,7 @@ export default function LandingPage() {
           {/* 2. In the Field — How evidence is captured */}
           <ActTwo isMobile={isMobile} />
 
-          {/* 3. Professional Technical Tree System & Audit Diagram */}
-          <TreeAuditDiagram />
-
-          {/* 4. Interactive Climate & Carbon Impact Simulator */}
+          {/* 3. Interactive Climate & Carbon Impact Simulator */}
           <ImpactCalculator />
 
           {/* 5. The Platform — What the interface looks like */}

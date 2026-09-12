@@ -31,18 +31,7 @@ function DynamicClimateCanvas() {
       size: Math.random() * 2.5 + 2,
     }));
 
-    // 2. Realistic Pointed Leaf Particles with Veins
-    const leaves = Array.from({ length: 22 }).map(() => ({
-      x: Math.random() * width,
-      y: height + Math.random() * 200,
-      vy: Math.random() * 0.7 + 0.3,
-      vx: Math.random() * 0.5 - 0.25,
-      length: Math.random() * 6 + 5,
-      width: Math.random() * 3.5 + 2.5,
-      angle: Math.random() * Math.PI * 2,
-      vAngle: (Math.random() - 0.5) * 0.04,
-      opacity: Math.random() * 0.4 + 0.2,
-    }));
+
 
     // 3. Flowing Atmospheric Wind Streamlines (NO CIRCLE PINGS!)
     const windStreamlines = [
@@ -130,45 +119,8 @@ function DynamicClimateCanvas() {
       });
 
       // ----------------------------------------------------
-      // C. Draw Realistic Pointed Leaves with Central Veins
+      // C. Draw Drifting Luminescent Climate Particles
       // ----------------------------------------------------
-      leaves.forEach((leaf) => {
-        leaf.y -= leaf.vy;
-        leaf.x += leaf.vx + Math.sin(step + leaf.length) * 0.5;
-        leaf.angle += leaf.vAngle;
-
-        if (leaf.y < -20) {
-          leaf.y = height + Math.random() * 50;
-          leaf.x = Math.random() * width;
-        }
-
-        ctx.save();
-        ctx.translate(leaf.x, leaf.y);
-        ctx.rotate(leaf.angle);
-
-        // Pointed Organic Leaf Geometry
-        ctx.beginPath();
-        ctx.moveTo(0, -leaf.length);
-        ctx.quadraticCurveTo(leaf.width, -leaf.length * 0.2, 0, leaf.length);
-        ctx.quadraticCurveTo(-leaf.width, -leaf.length * 0.2, 0, -leaf.length);
-        ctx.closePath();
-        ctx.fillStyle = isLight
-          ? `rgba(21, 128, 61, ${leaf.opacity})`
-          : `rgba(74, 222, 128, ${leaf.opacity})`;
-        ctx.fill();
-
-        // Leaf Central Vein Line
-        ctx.beginPath();
-        ctx.moveTo(0, -leaf.length * 0.85);
-        ctx.lineTo(0, leaf.length * 0.85);
-        ctx.strokeStyle = isLight
-          ? `rgba(15, 80, 38, ${leaf.opacity * 0.8})`
-          : `rgba(187, 247, 208, ${leaf.opacity * 0.8})`;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-
-        ctx.restore();
-      });
 
       // ----------------------------------------------------
       // E. Draw Drifting Luminescent Pollen / Spore Particles
