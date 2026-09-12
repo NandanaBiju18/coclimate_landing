@@ -3,6 +3,7 @@ import { useMobile } from '../hooks/useMobile';
 import Preloader from '../components/Preloader';
 import Navigation from '../components/Navigation';
 import ScrollProgress from '../components/ScrollProgress';
+import ClimateBackground from '../components/ClimateBackground';
 import ActOne from '../sections/ActOne';
 import ActTwo from '../sections/ActTwo';
 import ProductShowcase from '../sections/ProductShowcase';
@@ -23,6 +24,9 @@ export default function LandingPage() {
   return (
     <>
       <Preloader onComplete={handlePreloaderComplete} />
+
+      {/* Cohesive Climate-Tech GIS & Atmospheric Background System */}
+      <ClimateBackground />
 
       <div className={`app ${loaded ? 'app--loaded' : ''}`}>
         <Navigation />
