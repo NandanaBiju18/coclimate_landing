@@ -102,20 +102,20 @@
 }
 
 /* ==========================================
-   LIGHT THEME - Rich Warm Cream & Vibrant Forest Green
+   LIGHT THEME - Luxurious Soft Cream & Crisp Forest Green
    ========================================== */
 [data-theme='light'] {
-  --bg-primary: #FAF5EB;
-  --bg-secondary: #F3EBDC;
-  --bg-tertiary: #E8DCC8;
-  --bg-deep: #FAF7F0;
+  --bg-primary: #F8F4EC;
+  --bg-secondary: #F1EBE0;
+  --bg-tertiary: #E6DCCF;
+  --bg-deep: #FAF6F0;
   
-  --surface: rgba(255, 252, 245, 0.92);
+  --surface: rgba(255, 253, 248, 0.94);
   --surface-raised: #FFFFFF;
-  --surface-hover: #F5ECD8;
-  --surface-card: rgba(255, 252, 245, 0.95);
+  --surface-hover: #F3EBDD;
+  --surface-card: rgba(255, 253, 248, 0.96);
   
-  --text-primary: #0D2619;
+  --text-primary: #0F291E;
   --text-secondary: #166534;
   --text-muted: #15803D;
   --text-inverse: #FFFFFF;
@@ -126,21 +126,21 @@
   --accent-mineral: #0D9488;
   --accent-blue: #0284C7;
   --accent-sky: #BAE6FD;
-  --accent-glow: rgba(21, 128, 61, 0.28);
+  --accent-glow: rgba(21, 128, 61, 0.22);
   
-  --gis-line: rgba(21, 128, 61, 0.2);
-  --gis-line-blue: rgba(2, 132, 199, 0.16);
+  --gis-line: rgba(21, 128, 61, 0.18);
+  --gis-line-blue: rgba(2, 132, 199, 0.14);
   
   --button-bg: #15803D;
   --button-bg-hover: #166534;
   --button-text: #ffffff;
   
-  --border: rgba(21, 128, 61, 0.25);
-  --border-strong: rgba(21, 128, 61, 0.45);
-  --border-subtle: rgba(13, 38, 25, 0.1);
+  --border: rgba(21, 128, 61, 0.22);
+  --border-strong: rgba(21, 128, 61, 0.38);
+  --border-subtle: rgba(15, 41, 30, 0.08);
   
-  --shadow-soft: 0 10px 30px -5px rgba(13, 38, 25, 0.08);
-  --shadow-elevated: 0 20px 45px -10px rgba(13, 38, 25, 0.14), 0 0 25px rgba(21, 128, 61, 0.1);
+  --shadow-soft: 0 10px 30px -5px rgba(15, 41, 30, 0.06);
+  --shadow-elevated: 0 20px 45px -10px rgba(15, 41, 30, 0.12), 0 0 25px rgba(21, 128, 61, 0.08);
 }
 
 /* --- Reset --- */

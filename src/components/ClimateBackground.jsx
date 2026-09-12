@@ -149,17 +149,17 @@ function DynamicClimateCanvas() {
       });
 
       // ----------------------------------------------------
-      // B2. ARCHITECTURAL MINIMAL TREE VECTOR ANIMATION (Professional Minimalist GIS)
+      // B2. ARCHITECTURAL MINIMAL TREE VECTOR ANIMATION (Small & Subtle)
       // ----------------------------------------------------
-      const treeLine = isLight ? 'rgba(15, 80, 38, 0.32)' : 'rgba(34, 197, 94, 0.38)';
-      const treeFill = isLight ? 'rgba(21, 128, 61, 0.07)' : 'rgba(52, 211, 153, 0.08)';
-      const treePositions = [0.06, 0.22, 0.44, 0.65, 0.82, 0.94];
+      const treeLine = isLight ? 'rgba(21, 128, 61, 0.28)' : 'rgba(34, 197, 94, 0.32)';
+      const treeFill = isLight ? 'rgba(21, 128, 61, 0.06)' : 'rgba(52, 211, 153, 0.07)';
+      const treePositions = [0.05, 0.22, 0.44, 0.65, 0.82, 0.94];
 
       treePositions.forEach((posRatio, tIdx) => {
         const treeX = width * posRatio;
         const treeY = height;
-        const treeH = 120 + (tIdx % 3) * 35;
-        const treeSway = Math.sin(step * 0.5 + tIdx) * 6;
+        const treeH = 42 + (tIdx % 3) * 12; // Small & subtle (42px to 66px)
+        const treeSway = Math.sin(step * 0.4 + tIdx) * 3;
 
         ctx.save();
         ctx.translate(treeX, treeY);
@@ -167,59 +167,55 @@ function DynamicClimateCanvas() {
         // 1. Sleek Tapered Vector Trunk
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(treeSway * 0.25, -treeH * 0.45, treeSway * 0.45, -treeH * 0.78);
+        ctx.quadraticCurveTo(treeSway * 0.25, -treeH * 0.45, treeSway * 0.45, -treeH * 0.8);
         ctx.strokeStyle = treeLine;
-        ctx.lineWidth = 2.2;
+        ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // Left Branch Split
+        // Minimal Branch Splits
         ctx.beginPath();
         ctx.moveTo(treeSway * 0.25, -treeH * 0.45);
-        ctx.quadraticCurveTo(-20 + treeSway * 0.4, -treeH * 0.6, -38 + treeSway * 0.55, -treeH * 0.68);
+        ctx.quadraticCurveTo(-12 + treeSway * 0.4, -treeH * 0.6, -22 + treeSway * 0.55, -treeH * 0.7);
         ctx.strokeStyle = treeLine;
-        ctx.lineWidth = 1.4;
+        ctx.lineWidth = 1.0;
         ctx.stroke();
 
-        // Right Branch Split
         ctx.beginPath();
-        ctx.moveTo(treeSway * 0.32, -treeH * 0.5);
-        ctx.quadraticCurveTo(20 + treeSway * 0.4, -treeH * 0.62, 38 + treeSway * 0.55, -treeH * 0.7);
+        ctx.moveTo(treeSway * 0.3, -treeH * 0.5);
+        ctx.quadraticCurveTo(12 + treeSway * 0.4, -treeH * 0.62, 22 + treeSway * 0.55, -treeH * 0.72);
         ctx.strokeStyle = treeLine;
-        ctx.lineWidth = 1.4;
+        ctx.lineWidth = 1.0;
         ctx.stroke();
 
-        // 2. Minimal Architectural Canopy Envelope (Sleek Outline)
+        // 2. Small Minimal Canopy Envelope
         const cx = treeSway * 0.45;
         const cy = -treeH * 0.82;
-        const scale = 0.88 + (tIdx % 3) * 0.14;
+        const scale = 0.45 + (tIdx % 3) * 0.08; // Small delicate scale
 
         ctx.save();
         ctx.translate(cx, cy);
         ctx.scale(scale, scale);
 
-        // Clean Vector Canopy Envelope
         ctx.beginPath();
-        ctx.moveTo(0, -65);
-        ctx.bezierCurveTo(45, -60, 60, -30, 48, 10);
-        ctx.bezierCurveTo(35, 30, -35, 30, -48, 10);
-        ctx.bezierCurveTo(-60, -30, -45, -60, 0, -65);
+        ctx.moveTo(0, -50);
+        ctx.bezierCurveTo(35, -45, 45, -20, 35, 10);
+        ctx.bezierCurveTo(25, 25, -25, 25, -35, 10);
+        ctx.bezierCurveTo(-45, -20, -35, -45, 0, -50);
         ctx.closePath();
 
         ctx.fillStyle = treeFill;
         ctx.fill();
         ctx.strokeStyle = treeLine;
-        ctx.lineWidth = 1.3;
+        ctx.lineWidth = 1.1;
         ctx.stroke();
 
-        // Minimal GIS Blueprint Inner Vector Lines
+        // Minimal Blueprint Dash Line
         ctx.beginPath();
-        ctx.moveTo(0, -50);
+        ctx.moveTo(0, -35);
         ctx.lineTo(0, 10);
-        ctx.moveTo(-30, -20);
-        ctx.lineTo(30, -20);
         ctx.strokeStyle = treeLine;
-        ctx.lineWidth = 0.8;
-        ctx.setLineDash([3, 3]);
+        ctx.lineWidth = 0.7;
+        ctx.setLineDash([2, 2]);
         ctx.stroke();
         ctx.setLineDash([]);
 
