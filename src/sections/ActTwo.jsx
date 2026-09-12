@@ -67,6 +67,18 @@ export default function ActTwo({ isMobile = false }) {
             We monitor the health, growth, and environmental conditions of every project using satellite imagery and on-the-ground mobile proof.
           </p>
 
+          {/* Real Tree Field Inspection Visual Card */}
+          <div className="act-two__real-tree-card">
+            <img
+              src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop"
+              alt="Real tree canopy field inspection"
+              className="act-two__real-tree-img"
+            />
+            <div className="act-two__real-tree-badge">
+              <span className="status-dot"></span> REAL FIELD OBSERVATION · SITE 01
+            </div>
+          </div>
+
           {/* Animated Telemetry Overlay Badge Row */}
           <div className="act-two__radar-hud">
             <div className="act-two__radar-ping">
