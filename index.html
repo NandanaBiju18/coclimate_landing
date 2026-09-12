@@ -19,8 +19,7 @@
     <script>
       (function() {
         const storedTheme = localStorage.getItem('coclimate-theme');
-        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-        if (storedTheme === 'light' || (!storedTheme && prefersLight)) {
+        if (storedTheme === 'light') {
           document.documentElement.setAttribute('data-theme', 'light');
         } else {
           document.documentElement.setAttribute('data-theme', 'dark');
