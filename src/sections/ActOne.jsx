@@ -43,14 +43,6 @@ export default function ActOne({ isMobile = false }) {
 
   return (
     <section ref={sectionRef} className="act-one" id="discover">
-      <div className="act-one__forest-backdrop">
-        <img 
-          src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop" 
-          alt="Lush forest canopy" 
-          className="act-one__forest-img" 
-        />
-        <div className="act-one__forest-shade"></div>
-      </div>
       <div className="act-one__canvas">
         {isVisible && (
           <Suspense fallback={null}>
