@@ -13,16 +13,7 @@ const CARDS = [
     title: 'Project Overview',
     subtitle: 'Trees, health and survival — per project',
     accent: '#4a8f5f',
-    content: {
-      metrics: [
-        { label: 'Total Trees', value: '12,480', delta: '+340' },
-        { label: 'Survival Rate', value: '94.1%', delta: '+1.2%' },
-        { label: 'Healthy', value: '11,478', delta: '' },
-        { label: 'Needs Attention', value: '184', delta: '' },
-      ],
-      bars: [0.82, 0.65, 0.91, 0.54, 0.78, 0.88, 0.73],
-      status: 'Last reviewed 2 days ago',
-    },
+    content: { image: '/images/dashboard.jpg' },
   },
   {
     id: 'projects',
@@ -30,14 +21,7 @@ const CARDS = [
     title: 'Project Registry',
     subtitle: 'Land-based restoration projects',
     accent: '#3b7a54',
-    content: {
-      projects: [
-        { name: 'Palakkad Agroforestry', status: 'Verified', progress: 0.87, country: 'IN' },
-        { name: 'Coimbatore Green Belt', status: 'Monitoring', progress: 0.62, country: 'IN' },
-        { name: 'Wayanad Buffer Zone', status: 'In Review', progress: 0.44, country: 'IN' },
-        { name: 'Nilgiris Carbon Zone', status: 'Verified', progress: 0.94, country: 'IN' },
-      ],
-    },
+    content: { image: '/images/projects.jpg' },
   },
   {
     id: 'tasks',
@@ -45,15 +29,7 @@ const CARDS = [
     title: 'Field Tasks',
     subtitle: 'Assigned, submitted and reviewed',
     accent: '#2d6b48',
-    content: {
-      tasks: [
-        { name: 'Photograph tree counts at Plot 4', due: 'Today', priority: 'High', done: false },
-        { name: 'Upload GPS coordinates — Site B', due: 'Today', priority: 'High', done: true },
-        { name: 'Submit health report — Plot 7', due: 'Tomorrow', priority: 'Medium', done: false },
-        { name: 'Review officer submission #124', due: 'Fri', priority: 'High', done: false },
-        { name: 'Compile monthly impact data', due: 'Next week', priority: 'Low', done: false },
-      ],
-    },
+    content: { image: '/images/tasks.jpg' },
   },
   {
     id: 'monitoring',
@@ -61,108 +37,28 @@ const CARDS = [
     title: 'Monitoring Records',
     subtitle: 'Survival trends built over time',
     accent: '#4e9e6b',
-    content: {
-      dataPoints: [
-        { label: 'Photo Submissions', value: '1,240', unit: 'total' },
-        { label: 'Reviews Completed', value: '1,189', unit: 'approved' },
-        { label: 'Monitoring Records', value: '847', unit: 'entries' },
-        { label: 'Reviewed by Human', value: '100%', unit: '' },
-      ],
-      signals: [0.3, 0.6, 0.4, 0.9, 0.7, 0.5, 0.8, 0.6, 0.95, 0.75, 0.88, 0.5],
-    },
+    content: { image: '/images/monitoring.jpg' },
   },
 ];
 
-/* ── Card content renderers (swap with <img> later) ── */
-function DashboardContent({ data }) {
+/* ── Card content renderers (using images) ── */
+function ImageContent({ data }) {
   return (
-    <div className="pc-content">
-      <div className="pc-metrics-grid">
-        {data.metrics.map((m, i) => (
-          <div key={i} className="pc-metric">
-            <span className="pc-metric-val t-mono">{m.value}</span>
-            <span className="pc-metric-lbl t-label">{m.label}</span>
-            <span className="pc-metric-delta">{m.delta}</span>
-          </div>
-        ))}
-      </div>
-      <div className="pc-chart">
-        {data.bars.map((h, i) => (
-          <div key={i} className="pc-bar" style={{ '--h': h, '--delay': `${i * 60}ms` }} />
-        ))}
-      </div>
-      <div className="pc-status-row">
-        <span className="pc-status-dot" />
-        <span className="t-label pc-status-text">{data.status}</span>
-      </div>
-    </div>
-  );
-}
-
-function ProjectsContent({ data }) {
-  return (
-    <div className="pc-content">
-      <div className="pc-project-list">
-        {data.projects.map((p, i) => (
-          <div key={i} className="pc-project-row">
-            <div className="pc-project-head">
-              <span className="pc-project-flag">{p.country}</span>
-              <span className="t-label pc-project-name">{p.name}</span>
-              <span className={`pc-project-badge pc-badge--${p.status.toLowerCase().replace(' ', '-')}`}>{p.status}</span>
-            </div>
-            <div className="pc-project-bar">
-              <div className="pc-project-fill" style={{ '--p': p.progress, '--delay': `${i * 80}ms` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function TasksContent({ data }) {
-  return (
-    <div className="pc-content">
-      <div className="pc-task-list">
-        {data.tasks.map((t, i) => (
-          <div key={i} className={`pc-task-row ${t.done ? 'pc-task--done' : ''}`}>
-            <span className="pc-task-check">{t.done ? '✓' : ''}</span>
-            <span className="t-label pc-task-name">{t.name}</span>
-            <span className={`pc-task-priority pc-priority--${t.priority.toLowerCase()}`}>{t.priority}</span>
-            <span className="t-mono pc-task-due">{t.due}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MonitoringContent({ data }) {
-  return (
-    <div className="pc-content">
-      <div className="pc-data-points">
-        {data.dataPoints.map((d, i) => (
-          <div key={i} className="pc-data-point">
-            <span className="pc-data-val t-mono">{d.value}</span>
-            <span className="pc-data-lbl t-label">{d.label}</span>
-            {d.unit && <span className="pc-data-unit t-label">{d.unit}</span>}
-          </div>
-        ))}
-      </div>
-      <div className="pc-signal-chart">
-        {data.signals.map((v, i) => (
-          <div key={i} className="pc-signal-bar" style={{ '--h': v, '--delay': `${i * 40}ms` }} />
-        ))}
-      </div>
+    <div className="pc-content" style={{ padding: 0, height: '100%' }}>
+      <img 
+        src={data.image} 
+        alt="Dashboard UI" 
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+      />
     </div>
   );
 }
 
 const CONTENT_RENDERERS = {
-  dashboard: DashboardContent,
-  projects: ProjectsContent,
-  tasks: TasksContent,
-  monitoring: MonitoringContent,
+  dashboard: ImageContent,
+  projects: ImageContent,
+  tasks: ImageContent,
+  monitoring: ImageContent,
 };
 
 function mod(n, m) { return ((n % m) + m) % m; }
