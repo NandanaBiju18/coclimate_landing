@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import './ClimateBackground.css';
 
-function NodeMeshCanvas() {
+function DynamicClimateCanvas() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -21,15 +21,22 @@ function NodeMeshCanvas() {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Node points array
-    const numNodes = Math.min(35, Math.floor(width / 35));
+    // Interactive sensor nodes
+    const numNodes = Math.min(45, Math.floor(width / 30));
     const nodes = Array.from({ length: numNodes }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      radius: Math.random() * 2 + 1.2,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      radius: Math.random() * 2.5 + 1.5,
     }));
+
+    // Radar pings
+    const radarPings = [
+      { x: width * 0.2, y: height * 0.3, radius: 0, maxRadius: 160, speed: 0.8 },
+      { x: width * 0.75, y: height * 0.45, radius: 40, maxRadius: 180, speed: 0.7 },
+      { x: width * 0.45, y: height * 0.8, radius: 80, maxRadius: 200, speed: 0.9 },
+    ];
 
     let mouseX = width / 2;
     let mouseY = height / 2;
@@ -41,20 +48,61 @@ function NodeMeshCanvas() {
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
+    let step = 0;
+
     const render = () => {
+      step += 0.015;
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      const nodeColor = isLight ? 'rgba(35, 122, 85, 0.35)' : 'rgba(62, 179, 128, 0.4)';
-      const lineColor = isLight ? 'rgba(35, 122, 85, 0.08)' : 'rgba(45, 138, 98, 0.12)';
 
       ctx.clearRect(0, 0, width, height);
 
-      // Draw node connections
+      // 1. Draw Fluid Topographic Sine Waves
+      const waveColors = isLight
+        ? ['rgba(35, 122, 85, 0.15)', 'rgba(14, 165, 233, 0.12)', 'rgba(5, 150, 105, 0.15)']
+        : ['rgba(34, 197, 94, 0.2)', 'rgba(20, 184, 166, 0.18)', 'rgba(52, 211, 153, 0.16)'];
+
+      waveColors.forEach((color, wIndex) => {
+        ctx.beginPath();
+        const baseHeight = height * (0.3 + wIndex * 0.25);
+        ctx.moveTo(0, baseHeight);
+
+        for (let x = 0; x <= width; x += 15) {
+          const y =
+            baseHeight +
+            Math.sin(x * 0.003 + step + wIndex) * 35 +
+            Math.cos(x * 0.008 + step * 0.7) * 20;
+          ctx.lineTo(x, y);
+        }
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.8 - wIndex * 0.4;
+        ctx.stroke();
+      });
+
+      // 2. Draw Radar Pulse Pings
+      radarPings.forEach((ping) => {
+        ping.radius += ping.speed;
+        if (ping.radius > ping.maxRadius) ping.radius = 0;
+
+        const pingOpacity = (1 - ping.radius / ping.maxRadius) * (isLight ? 0.25 : 0.35);
+        ctx.beginPath();
+        ctx.arc(ping.x, ping.y, ping.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = isLight
+          ? `rgba(21, 128, 61, ${pingOpacity})`
+          : `rgba(52, 211, 153, ${pingOpacity})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      });
+
+      // 3. Draw Nodes and Connections
+      const nodeColor = isLight ? 'rgba(21, 128, 61, 0.5)' : 'rgba(74, 222, 128, 0.6)';
+      const lineColor = isLight ? 'rgba(21, 128, 61, 0.12)' : 'rgba(34, 197, 94, 0.18)';
+
       for (let i = 0; i < nodes.length; i++) {
         const n1 = nodes[i];
         n1.x += n1.vx;
         n1.y += n1.vy;
 
-        // Bounce off walls
         if (n1.x < 0 || n1.x > width) n1.vx *= -1;
         if (n1.y < 0 || n1.y > height) n1.vy *= -1;
 
@@ -62,12 +110,12 @@ function NodeMeshCanvas() {
         const dxMouse = mouseX - n1.x;
         const dyMouse = mouseY - n1.y;
         const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        if (distMouse < 120) {
-          n1.x -= (dxMouse / distMouse) * 0.5;
-          n1.y -= (dyMouse / distMouse) * 0.5;
+        if (distMouse < 150) {
+          n1.x -= (dxMouse / distMouse) * 0.8;
+          n1.y -= (dyMouse / distMouse) * 0.8;
         }
 
-        // Draw node dot
+        // Draw node
         ctx.beginPath();
         ctx.arc(n1.x, n1.y, n1.radius, 0, Math.PI * 2);
         ctx.fillStyle = nodeColor;
@@ -80,12 +128,12 @@ function NodeMeshCanvas() {
           const dy = n2.y - n1.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
+          if (dist < 140) {
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
             ctx.lineTo(n2.x, n2.y);
             ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 0.8 * (1 - dist / 130);
+            ctx.lineWidth = 1 * (1 - dist / 140);
             ctx.stroke();
           }
         }
@@ -103,7 +151,7 @@ function NodeMeshCanvas() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="climate-bg__node-canvas" />;
+  return <canvas ref={canvasRef} className="climate-bg__dynamic-canvas" />;
 }
 
 export default function ClimateBackground() {
@@ -143,68 +191,15 @@ export default function ClimateBackground() {
 
   return (
     <div className={`climate-bg-system climate-bg--${activeSection}`} aria-hidden="true">
-      {/* 1. Interactive Node & Sensor Data Mesh Canvas */}
-      <NodeMeshCanvas />
+      {/* Dynamic Climate Canvas — Fluid sine waves, radar pings & node mesh */}
+      <DynamicClimateCanvas />
 
-      {/* 2. Atmospheric Gradient Aura (Soft Green & Sky Blue blend) */}
+      {/* Rotating Atmospheric Gradient Aura */}
       <div className="climate-bg__aura climate-bg__aura--primary" />
       <div className="climate-bg__aura climate-bg__aura--secondary" />
 
-      {/* 3. GIS Coordinate & Map Grid Overlay */}
+      {/* GIS Coordinate Map Grid */}
       <div className="climate-bg__gis-grid" />
-
-      {/* 4. Topographic Contour Line Paths */}
-      <svg className="climate-bg__contours" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="xMidYMid slice">
-        <path
-          d="M-100,250 C250,120 600,380 950,220 C1250,80 1500,320 1600,280"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          className="contour-line contour-line--1"
-        />
-        <path
-          d="M-80,380 C280,240 620,480 980,310 C1280,180 1480,420 1620,360"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="contour-line contour-line--2"
-        />
-        <path
-          d="M-50,520 C320,380 660,600 1020,420 C1320,290 1520,530 1650,470"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="contour-line contour-line--3"
-        />
-        <path
-          d="M-120,680 C200,580 500,750 850,620 C1200,480 1420,700 1680,630"
-          stroke="currentColor"
-          strokeWidth="0.8"
-          className="contour-line contour-line--4"
-        />
-      </svg>
-
-      {/* 5. Flowing Climate / Wind Stream Vector Lines */}
-      <svg className="climate-bg__wind-streams" viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
-        <path
-          d="M-100,150 Q400,80 900,180 T1600,120"
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeDasharray="12 16"
-          className="wind-stream wind-stream--1"
-        />
-        <path
-          d="M-100,320 Q500,240 1000,360 T1600,280"
-          stroke="currentColor"
-          strokeWidth="0.8"
-          strokeDasharray="8 14"
-          className="wind-stream wind-stream--2"
-        />
-        <path
-          d="M-100,480 Q450,420 950,520 T1600,440"
-          stroke="currentColor"
-          strokeWidth="0.7"
-          strokeDasharray="10 18"
-          className="wind-stream wind-stream--3"
-        />
-      </svg>
     </div>
   );
 }
