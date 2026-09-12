@@ -21,24 +21,27 @@ function DynamicClimateCanvas() {
 
     window.addEventListener('resize', handleResize, { passive: true });
 
-    // Interactive sensor nodes
-    const numNodes = Math.min(40, Math.floor(width / 32));
+    // Sensor nodes
+    const numNodes = Math.min(35, Math.floor(width / 35));
     const nodes = Array.from({ length: numNodes }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
       radius: Math.random() * 2 + 1.2,
     }));
 
-    // Floating leaves
-    const leaves = Array.from({ length: 16 }).map(() => ({
+    // Organic floating leaves
+    const leaves = Array.from({ length: 20 }).map(() => ({
       x: Math.random() * width,
-      y: height + Math.random() * 200,
-      vy: Math.random() * 0.8 + 0.4,
-      vx: Math.random() * 0.5 - 0.25,
-      size: Math.random() * 3 + 2,
-      opacity: Math.random() * 0.4 + 0.2,
+      y: height + Math.random() * 300,
+      vy: Math.random() * 0.7 + 0.3,
+      vx: Math.random() * 0.4 - 0.2,
+      rx: Math.random() * 5 + 4,
+      ry: Math.random() * 3 + 2,
+      angle: Math.random() * Math.PI * 2,
+      vAngle: (Math.random() - 0.5) * 0.03,
+      opacity: Math.random() * 0.35 + 0.15,
     }));
 
     // Radar pings
@@ -61,15 +64,15 @@ function DynamicClimateCanvas() {
     let step = 0;
 
     const render = () => {
-      step += 0.015;
+      step += 0.012;
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
 
       ctx.clearRect(0, 0, width, height);
 
       // 1. Draw Fluid Topographic Sine Waves
       const waveColors = isLight
-        ? ['rgba(35, 122, 85, 0.14)', 'rgba(14, 165, 233, 0.12)', 'rgba(5, 150, 105, 0.14)']
-        : ['rgba(34, 197, 94, 0.18)', 'rgba(20, 184, 166, 0.16)', 'rgba(52, 211, 153, 0.15)'];
+        ? ['rgba(35, 122, 85, 0.12)', 'rgba(14, 165, 233, 0.1)', 'rgba(5, 150, 105, 0.12)']
+        : ['rgba(34, 197, 94, 0.16)', 'rgba(20, 184, 166, 0.14)', 'rgba(52, 211, 153, 0.14)'];
 
       waveColors.forEach((color, wIndex) => {
         ctx.beginPath();
@@ -89,62 +92,81 @@ function DynamicClimateCanvas() {
         ctx.stroke();
       });
 
-      // 2. Draw Swaying Procedural Trees along Horizon
-      const treeColor = isLight ? 'rgba(21, 128, 61, 0.22)' : 'rgba(52, 211, 153, 0.25)';
-      const treePositions = [0.08, 0.22, 0.42, 0.62, 0.78, 0.92];
+      // 2. Draw Swaying Organic Broadleaf / Deciduous Trees (Nature Canopy)
+      const foliageColor = isLight ? 'rgba(21, 128, 61, 0.25)' : 'rgba(52, 211, 153, 0.28)';
+      const trunkColor = isLight ? 'rgba(44, 77, 55, 0.25)' : 'rgba(34, 197, 94, 0.2)';
+      const treePositions = [0.06, 0.2, 0.38, 0.58, 0.76, 0.92];
 
       treePositions.forEach((posRatio, index) => {
         const treeBaseX = width * posRatio;
-        const treeBaseY = height - 10;
-        const treeHeight = 70 + (index % 3) * 25;
-        const sway = Math.sin(step * 1.2 + index) * 6;
+        const treeBaseY = height - 5;
+        const treeHeight = 85 + (index % 3) * 30;
+        const sway = Math.sin(step * 0.8 + index) * 8;
 
         ctx.save();
         ctx.translate(treeBaseX, treeBaseY);
 
-        // Trunk
+        // Curved Natural Trunk
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.lineTo(sway * 0.3, -treeHeight * 0.4);
-        ctx.strokeStyle = treeColor;
-        ctx.lineWidth = 3;
+        ctx.quadraticCurveTo(sway * 0.3, -treeHeight * 0.5, sway * 0.5, -treeHeight * 0.7);
+        ctx.strokeStyle = trunkColor;
+        ctx.lineWidth = 4;
         ctx.stroke();
 
-        // Layered Pine Canopy Triangles
-        for (let layer = 0; layer < 3; layer++) {
-          const layerY = -treeHeight * (0.35 + layer * 0.25);
-          const layerWidth = (40 - layer * 9) * 0.85;
-          const layerHeight = 35 - layer * 5;
-          const layerSway = sway * (0.4 + layer * 0.3);
+        // Round Organic Foliage Canopy Blobs (Broadleaf Oak/Banyan style)
+        const canopyCenterX = sway * 0.5;
+        const canopyCenterY = -treeHeight * 0.75;
 
+        // Main Canopy Cluster
+        const blobs = [
+          { dx: 0, dy: 0, r: 38 },
+          { dx: -22, dy: 10, r: 28 },
+          { dx: 22, dy: 12, r: 28 },
+          { dx: -14, dy: -18, r: 26 },
+          { dx: 14, dy: -16, r: 26 },
+        ];
+
+        blobs.forEach((blob) => {
           ctx.beginPath();
-          ctx.moveTo(layerSway, layerY - layerHeight);
-          ctx.lineTo(layerSway - layerWidth / 2, layerY);
-          ctx.lineTo(layerSway + layerWidth / 2, layerY);
-          ctx.closePath();
-          ctx.fillStyle = treeColor;
+          ctx.arc(
+            canopyCenterX + blob.dx + Math.sin(step + index) * 2,
+            canopyCenterY + blob.dy + Math.cos(step + index) * 2,
+            blob.r,
+            0,
+            Math.PI * 2
+          );
+          ctx.fillStyle = foliageColor;
           ctx.fill();
-        }
+        });
 
         ctx.restore();
       });
 
-      // 3. Floating Leaves / Spores
+      // 3. Floating Organic Leaves (Natural Leaf Shapes)
       leaves.forEach((leaf) => {
         leaf.y -= leaf.vy;
-        leaf.x += leaf.vx + Math.sin(step + leaf.size) * 0.5;
+        leaf.x += leaf.vx + Math.sin(step + leaf.rx) * 0.6;
+        leaf.angle += leaf.vAngle;
 
         if (leaf.y < -20) {
           leaf.y = height + Math.random() * 50;
           leaf.x = Math.random() * width;
         }
 
+        ctx.save();
+        ctx.translate(leaf.x, leaf.y);
+        ctx.rotate(leaf.angle);
+
+        // Natural leaf ellipse shape
         ctx.beginPath();
-        ctx.arc(leaf.x, leaf.y, leaf.size, 0, Math.PI * 2);
+        ctx.ellipse(0, 0, leaf.rx, leaf.ry, 0, 0, Math.PI * 2);
         ctx.fillStyle = isLight
           ? `rgba(21, 128, 61, ${leaf.opacity})`
           : `rgba(74, 222, 128, ${leaf.opacity})`;
         ctx.fill();
+
+        ctx.restore();
       });
 
       // 4. Draw Radar Pulse Pings
@@ -152,7 +174,7 @@ function DynamicClimateCanvas() {
         ping.radius += ping.speed;
         if (ping.radius > ping.maxRadius) ping.radius = 0;
 
-        const pingOpacity = (1 - ping.radius / ping.maxRadius) * (isLight ? 0.25 : 0.32);
+        const pingOpacity = (1 - ping.radius / ping.maxRadius) * (isLight ? 0.22 : 0.3);
         ctx.beginPath();
         ctx.arc(ping.x, ping.y, ping.radius, 0, Math.PI * 2);
         ctx.strokeStyle = isLight
@@ -163,8 +185,8 @@ function DynamicClimateCanvas() {
       });
 
       // 5. Draw Sensor Nodes and Connections
-      const nodeColor = isLight ? 'rgba(21, 128, 61, 0.45)' : 'rgba(74, 222, 128, 0.55)';
-      const lineColor = isLight ? 'rgba(21, 128, 61, 0.12)' : 'rgba(34, 197, 94, 0.16)';
+      const nodeColor = isLight ? 'rgba(21, 128, 61, 0.4)' : 'rgba(74, 222, 128, 0.5)';
+      const lineColor = isLight ? 'rgba(21, 128, 61, 0.1)' : 'rgba(34, 197, 94, 0.14)';
 
       for (let i = 0; i < nodes.length; i++) {
         const n1 = nodes[i];
@@ -193,12 +215,12 @@ function DynamicClimateCanvas() {
           const dy = n2.y - n1.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 135) {
+          if (dist < 130) {
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
             ctx.lineTo(n2.x, n2.y);
             ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 1 * (1 - dist / 135);
+            ctx.lineWidth = 1 * (1 - dist / 130);
             ctx.stroke();
           }
         }
@@ -256,7 +278,7 @@ export default function ClimateBackground() {
 
   return (
     <div className={`climate-bg-system climate-bg--${activeSection}`} aria-hidden="true">
-      {/* Dynamic Climate Canvas — Fluid sine waves, swaying trees, floating leaves & node mesh */}
+      {/* Dynamic Climate Canvas — Organic broadleaf trees, natural leaves, waves & nodes */}
       <DynamicClimateCanvas />
 
       {/* Rotating Atmospheric Gradient Aura */}
