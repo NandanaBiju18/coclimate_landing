@@ -1,8 +1,7 @@
 .act-two {
   position: relative;
   width: 100%;
-  background: var(--bg-secondary);
-  transition: background var(--duration-normal) var(--ease-in-out);
+  background: transparent;
 }
 
 .act-two__canvas {
@@ -17,10 +16,12 @@
   position: relative;
   z-index: var(--z-content);
   width: 100%;
-  padding: 8rem 0;
+  min-height: 100vh;
+  margin-top: -100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 .act-two__hero-text {
@@ -30,24 +31,91 @@
   pointer-events: auto;
 }
 
-.act-two__label {
-  display: block;
-  margin-bottom: 2rem;
-  color: var(--text-secondary);
-}
-
 .act-two__headline {
   margin-bottom: 0.25rem;
 }
 
 .act-two__sub {
   color: var(--text-secondary);
-  max-width: 600px;
-  margin: 2rem auto 0;
+  max-width: 620px;
+  margin: 1.5rem auto 0;
   text-align: center;
+}
+
+/* Telemetry HUD & Radar sweep */
+.act-two__radar-hud {
+  margin-top: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+.act-two__radar-ping {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--accent);
+  animation: radarSpin 1.8s linear infinite;
+}
+
+.radar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.act-two__telemetry-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.chip--accent {
+  color: var(--accent-hover);
+  font-weight: 600;
+}
+
+@keyframes radarSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .act-two__radar-hud {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-lg);
+  }
 }

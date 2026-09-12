@@ -28,7 +28,6 @@ export default function ActTwo({ isMobile = false }) {
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
       const scrolled = -rect.top;
-      // If the section is taller than viewport, we track progress through it
       const total = Math.max(1, sectionHeight - viewportHeight);
       setProgress(Math.max(0, Math.min(1, scrolled / total)));
     };
@@ -44,17 +43,43 @@ export default function ActTwo({ isMobile = false }) {
 
   return (
     <section ref={sectionRef} className="act-two" id="observe">
+      <div className="act-two__canvas">
+        {isVisible && (
+          <Suspense fallback={null}>
+            <ObservationScene progress={progress} isMobile={isMobile} />
+          </Suspense>
+        )}
+      </div>
+
       <div className="act-two__content">
         <div className="act-two__hero-text">
-          <span className="act-two__label t-label">In the Field</span>
+          <div className="badge-glow">
+            <span className="badge-glow__dot" />
+            <span>Satellite & Mobile Telemetry</span>
+          </div>
+
           <StatementReveal
             text="Observe every hectare."
             className="t-display act-two__headline"
             tag="h2"
           />
           <p className="t-subheading act-two__sub" style={{ opacity: 0, animation: 'fadeInUp 1s ease 0.8s forwards' }}>
-            We monitor the health, growth, and environmental conditions of every project using satellite and on-the-ground data.
+            We monitor the health, growth, and environmental conditions of every project using satellite imagery and on-the-ground mobile proof.
           </p>
+
+          {/* Animated Telemetry Overlay Badge Row */}
+          <div className="act-two__radar-hud">
+            <div className="act-two__radar-ping">
+              <span className="radar-sweep" />
+              <span className="radar-dot" />
+            </div>
+            <div className="act-two__telemetry-chips">
+              <span className="t-mono chip">LAT 10.78°N</span>
+              <span className="t-mono chip">LON 76.65°E</span>
+              <span className="t-mono chip chip--accent">Canopy Index 94.2%</span>
+              <span className="t-mono chip">10cm Multispectral</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

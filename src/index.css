@@ -63,75 +63,75 @@
   --max-width: 1400px;
   --gutter: clamp(1.5rem, 5vw, 4rem);
 
-  /* DARK THEME (DEFAULT) - Deep Forest Climate Tech */
-  --bg-primary: #050B07;
-  --bg-secondary: #0A140D;
-  --bg-tertiary: #101E14;
-  --bg-deep: #030604;
+  /* DARK THEME (DEFAULT) - Balanced Forest Tech (Not Pitch Black) */
+  --bg-primary: #0E1712;
+  --bg-secondary: #132019;
+  --bg-tertiary: #192B21;
+  --bg-deep: #080D0A;
   
-  --surface: rgba(14, 25, 17, 0.7);
-  --surface-raised: rgba(22, 38, 26, 0.85);
-  --surface-hover: rgba(30, 50, 34, 0.95);
-  --surface-card: rgba(12, 22, 15, 0.75);
+  --surface: rgba(22, 38, 28, 0.75);
+  --surface-raised: rgba(30, 52, 38, 0.85);
+  --surface-hover: rgba(38, 65, 48, 0.95);
+  --surface-card: rgba(18, 32, 23, 0.8);
   
   --text-primary: #F0FDF4;
-  --text-secondary: #A7F3D0;
-  --text-muted: #6EE7B7;
-  --text-inverse: #050B07;
+  --text-secondary: #B9E6C9;
+  --text-muted: #74A887;
+  --text-inverse: #0E1712;
   
   --accent: #22c55e;
   --accent-hover: #4ade80;
   --accent-soft: #14532d;
   --accent-mineral: #10b981;
-  --accent-glow: rgba(34, 197, 94, 0.35);
-  
-  --button-bg: #15803d;
-  --button-bg-hover: #16a34a;
-  --button-text: #ffffff;
-  
-  --border: rgba(34, 197, 94, 0.18);
-  --border-strong: rgba(34, 197, 94, 0.35);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  
-  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  --shadow-elevated: 0 20px 50px -15px rgba(0, 0, 0, 0.9), 0 0 30px rgba(34, 197, 94, 0.1);
-}
-
-/* ==========================================
-   LIGHT THEME (OPTIONAL SAGE GREEN ACCENT)
-   ========================================== */
-[data-theme='light'] {
-  --bg-primary: #0A140D;
-  --bg-secondary: #101E14;
-  --bg-tertiary: #16281B;
-  --bg-deep: #050B07;
-  
-  --surface: rgba(20, 35, 24, 0.8);
-  --surface-raised: rgba(28, 48, 33, 0.9);
-  --surface-hover: rgba(36, 60, 42, 0.95);
-  --surface-card: rgba(18, 32, 22, 0.85);
-  
-  --text-primary: #F0FDF4;
-  --text-secondary: #A7F3D0;
-  --text-muted: #6EE7B7;
-  --text-inverse: #050B07;
-  
-  --accent: #22c55e;
-  --accent-hover: #4ade80;
-  --accent-soft: #14532d;
-  --accent-mineral: #10b981;
-  --accent-glow: rgba(34, 197, 94, 0.35);
+  --accent-glow: rgba(34, 197, 94, 0.3);
   
   --button-bg: #15803d;
   --button-bg-hover: #16a34a;
   --button-text: #ffffff;
   
   --border: rgba(34, 197, 94, 0.2);
-  --border-strong: rgba(34, 197, 94, 0.4);
-  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(34, 197, 94, 0.38);
+  --border-subtle: rgba(255, 255, 255, 0.08);
   
-  --shadow-soft: 0 8px 25px -5px rgba(0, 0, 0, 0.5);
-  --shadow-elevated: 0 20px 45px -10px rgba(0, 0, 0, 0.8);
+  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  --shadow-elevated: 0 20px 50px -15px rgba(0, 0, 0, 0.7), 0 0 25px rgba(34, 197, 94, 0.08);
+}
+
+/* ==========================================
+   LIGHT THEME (FRESH SAGE & MINT PALETTE)
+   ========================================== */
+[data-theme='light'] {
+  --bg-primary: #F2F7F4;
+  --bg-secondary: #E3EDE6;
+  --bg-tertiary: #D4E3D8;
+  --bg-deep: #E9F2EC;
+  
+  --surface: #FFFFFF;
+  --surface-raised: #F8FCFA;
+  --surface-hover: #EEF6F1;
+  --surface-card: rgba(255, 255, 255, 0.9);
+  
+  --text-primary: #0F2016;
+  --text-secondary: #2C4835;
+  --text-muted: #557560;
+  --text-inverse: #FFFFFF;
+  
+  --accent: #15803d;
+  --accent-hover: #166534;
+  --accent-soft: #dcfce7;
+  --accent-mineral: #059669;
+  --accent-glow: rgba(21, 128, 61, 0.18);
+  
+  --button-bg: #15803d;
+  --button-bg-hover: #166534;
+  --button-text: #ffffff;
+  
+  --border: rgba(21, 128, 61, 0.18);
+  --border-strong: rgba(21, 128, 61, 0.35);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  
+  --shadow-soft: 0 8px 25px -5px rgba(15, 32, 22, 0.08);
+  --shadow-elevated: 0 20px 45px -10px rgba(15, 32, 22, 0.15);
 }
 
 /* --- Reset --- */

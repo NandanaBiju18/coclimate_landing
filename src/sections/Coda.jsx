@@ -1,5 +1,4 @@
 import StatementReveal from '../components/StatementReveal';
-import MagneticButton from '../components/MagneticButton';
 import './Coda.css';
 
 export default function Coda() {
@@ -7,14 +6,24 @@ export default function Coda() {
     <section className="coda" id="coda">
       <div className="coda__content">
         <div className="coda__main">
+          <div className="badge-glow">
+            <span className="badge-glow__dot" />
+            <span>Cryptographic Proof & Accountability</span>
+          </div>
+
           <StatementReveal
             text="Proof the trees are still standing."
             className="t-display coda__headline"
             tag="h2"
           />
 
+          <p className="t-statement coda__sub">
+            Real impact isn't defined by marketing promises. It is built through ground truth, satellite monitoring, and verifiable evidence that stands up to scrutiny.
+          </p>
+
           <div className="coda__actions">
-            <a href="#discover" className="coda__btn coda__btn--outline">Back to top</a>
+            <a href="#contact" className="coda__btn">Get Started with Co-Climate</a>
+            <a href="#discover" className="coda__btn coda__btn--outline">Back to top ↑</a>
           </div>
         </div>
 
@@ -39,7 +48,7 @@ export default function Coda() {
           </div>
 
           <div className="coda__footer-right">
-            <span className="t-mono" style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>
+            <span className="t-mono" style={{ fontSize: '0.7rem', color: 'var(--accent-hover)' }}>
               COIMBATORE & PALAKKAD, INDIA
             </span>
           </div>
