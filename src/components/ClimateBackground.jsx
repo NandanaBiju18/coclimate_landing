@@ -347,7 +347,17 @@ export default function ClimateBackground() {
 
   return (
     <div className={`climate-bg-system climate-bg--${activeSection}`} aria-hidden="true">
-      {/* Dynamic Climate Canvas — Organic broadleaf trees, natural leaves, waves & nodes */}
+      {/* Real Forest Tree Photography Background Layer */}
+      <div className="climate-bg__forest-image-layer">
+        <img
+          src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=2000&auto=format&fit=crop"
+          alt="Real forest trees landscape"
+          className="climate-bg__forest-img"
+        />
+        <div className="climate-bg__forest-overlay" />
+      </div>
+
+      {/* Dynamic Climate Canvas — God rays, falling leaves, waves & nodes */}
       <DynamicClimateCanvas />
 
       {/* Rotating Atmospheric Gradient Aura */}

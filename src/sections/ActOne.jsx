@@ -43,28 +43,6 @@ export default function ActOne({ isMobile = false }) {
 
   return (
     <section ref={sectionRef} className="act-one" id="discover">
-      {/* Real Forest Tree Landscape Backdrop with GIS Monitoring Boundary */}
-      <div className="act-one__forest-backdrop" aria-hidden="true">
-        <img
-          src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=1600&auto=format&fit=crop"
-          alt="Lush real forest canopy"
-          className="act-one__forest-img"
-        />
-        <div className="act-one__forest-shade" />
-
-        {/* Plot 01 GIS Boundary Overlay */}
-        <div className="act-one__boundary-card">
-          <div className="act-one__boundary-header">
-            <span className="status-dot" />
-            <span className="act-one__boundary-title">PLOT 01 MONITORING AREA</span>
-          </div>
-          <div className="act-one__boundary-pins">
-            <span className="act-one__pin"><span></span>Site 01 · 10.78°N</span>
-            <span className="act-one__pin"><span></span>Site 02 · 76.65°E</span>
-          </div>
-        </div>
-      </div>
-
       <div className="act-one__canvas">
         {isVisible && (
           <Suspense fallback={null}>
