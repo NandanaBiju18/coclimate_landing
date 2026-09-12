@@ -4,74 +4,8 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 20%, #112217 0%, #0E1712 60%, #060B08 100%);
-  transition: background 0.5s ease;
-}
-
-[data-theme='light'] .ambient-bg-glow {
-  background: radial-gradient(circle at 50% 20%, #FBF6EB 0%, #F4ECE0 60%, #EAE1CF 100%);
-}
-
-.ambient-grid {
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 80%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 80%);
-}
-
-[data-theme='light'] .ambient-grid {
-  background-image: linear-gradient(to right, rgba(21, 128, 61, 0.08) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(21, 128, 61, 0.08) 1px, transparent 1px);
-}
-
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.25;
-  animation: floatOrb 22s ease-in-out infinite alternate;
-  transition: background 0.5s ease;
-}
-
-.ambient-orb--1 {
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.45) 0%, rgba(16, 185, 129, 0.1) 70%, transparent 100%);
-  top: -120px;
-  left: 15%;
-}
-
-[data-theme='light'] .ambient-orb--1 {
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.25) 0%, rgba(21, 128, 61, 0.08) 70%, transparent 100%);
-}
-
-.ambient-orb--2 {
-  width: 750px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, rgba(5, 150, 105, 0.08) 70%, transparent 100%);
-  top: 35%;
-  right: -180px;
-  animation-delay: -6s;
-}
-
-[data-theme='light'] .ambient-orb--2 {
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.2) 0%, rgba(21, 128, 61, 0.06) 70%, transparent 100%);
-}
-
-.ambient-orb--3 {
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(22, 101, 52, 0.5) 0%, rgba(6, 78, 59, 0.1) 70%, transparent 100%);
-  bottom: 5%;
-  left: -120px;
-  animation-delay: -12s;
-}
-
-[data-theme='light'] .ambient-orb--3 {
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.22) 0%, rgba(202, 138, 4, 0.05) 70%, transparent 100%);
+  background: var(--bg-primary);
+  transition: background 0.4s ease;
 }
 
 /* Floating Spores / Leaves */
@@ -79,20 +13,15 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .bg-spore {
   position: absolute;
   bottom: -20px;
-  background: radial-gradient(circle, #4ade80 0%, rgba(34, 197, 94, 0.4) 60%, transparent 100%);
+  background: radial-gradient(circle, var(--accent) 0%, rgba(34, 197, 94, 0.3) 70%, transparent 100%);
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
   animation: floatSpore linear infinite;
-}
-
-[data-theme='light'] .bg-spore {
-  background: radial-gradient(circle, #15803d 0%, rgba(34, 197, 94, 0.5) 60%, transparent 100%);
-  box-shadow: 0 0 10px rgba(21, 128, 61, 0.4);
 }
 
 @keyframes floatSpore {
@@ -101,43 +30,13 @@
     opacity: 0;
   }
   20% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   80% {
-    opacity: 0.4;
+    opacity: 0.3;
   }
   100% {
-    transform: translateY(-105vh) translateX(40px) scale(1.2);
+    transform: translateY(-105vh) translateX(30px) scale(1.1);
     opacity: 0;
   }
-}
-
-/* Tree Silhouettes Horizon */
-.bg-tree-silhouettes {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 240px;
-  pointer-events: none;
-  opacity: 0.85;
-}
-
-.bg-tree-silhouettes svg {
-  width: 100%;
-  height: 100%;
-}
-
-[data-theme='light'] .bg-tree-silhouettes svg path:nth-child(1) {
-  fill: rgba(21, 128, 61, 0.08);
-}
-
-[data-theme='light'] .bg-tree-silhouettes svg path:nth-child(2) {
-  fill: rgba(21, 128, 61, 0.12);
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(45px, -60px) scale(1.1); }
-  100% { transform: translate(-35px, 45px) scale(0.92); }
 }
