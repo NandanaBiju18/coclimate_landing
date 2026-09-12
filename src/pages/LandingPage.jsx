@@ -4,6 +4,8 @@ import Preloader from '../components/Preloader';
 import Navigation from '../components/Navigation';
 import ScrollProgress from '../components/ScrollProgress';
 import ClimateBackground from '../components/ClimateBackground';
+import TreeAuditDiagram from '../components/TreeAuditDiagram';
+import ImpactCalculator from '../components/ImpactCalculator';
 import ActOne from '../sections/ActOne';
 import ActTwo from '../sections/ActTwo';
 import ProductShowcase from '../sections/ProductShowcase';
@@ -39,19 +41,25 @@ export default function LandingPage() {
           {/* 2. In the Field — How evidence is captured */}
           <ActTwo isMobile={isMobile} />
 
-          {/* 3. The Platform — What the interface looks like */}
+          {/* 3. Professional Technical Tree System & Audit Diagram */}
+          <TreeAuditDiagram />
+
+          {/* 4. Interactive Climate & Carbon Impact Simulator */}
+          <ImpactCalculator />
+
+          {/* 5. The Platform — What the interface looks like */}
           <ProductShowcase />
 
-          {/* 4. How It Works — The 4-step verification process */}
+          {/* 6. How It Works — The 4-step verification process */}
           <ActFour />
 
-          {/* 5. Services — What Co-Climate offers */}
+          {/* 7. Services — What Co-Climate offers */}
           <Services />
 
-          {/* 6. Contact — Get started */}
+          {/* 8. Contact — Get started */}
           <Contact />
 
-          {/* 7. Coda — Final statement + closing */}
+          {/* 9. Coda — Final statement + closing */}
           <Coda />
         </main>
         

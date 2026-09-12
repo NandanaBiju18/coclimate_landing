@@ -1,0 +1,225 @@
+.tree-diagram-section {
+  position: relative;
+  width: 100%;
+  padding: 7rem var(--gutter);
+  z-index: var(--z-content);
+}
+
+.tree-diagram-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.tree-diagram-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
+}
+
+.tree-diagram-title {
+  margin-bottom: 1rem;
+}
+
+.tree-diagram-desc {
+  color: var(--text-secondary);
+}
+
+.tree-diagram-card {
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-elevated);
+}
+
+.tree-diagram-modes {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.tree-diagram-mode-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.25rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out-expo);
+}
+
+.tree-diagram-mode-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.tree-diagram-mode-btn--active {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border-color: var(--button-bg);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.tree-diagram-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Vector Graphic Column */
+.tree-diagram-graphic-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+.tree-svg-wrapper {
+  width: 100%;
+  max-width: 380px;
+}
+
+.tree-svg {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes satRayPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.sat-ray {
+  animation: satRayPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes hotspotPulse {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.hotspot-pulse {
+  transform-origin: center;
+  animation: hotspotPulse 2s infinite ease-out;
+}
+
+/* Panel Right Column */
+.tree-diagram-panel {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tree-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tree-panel-id {
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+
+.tree-panel-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.65rem;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+  border-radius: var(--radius-pill);
+}
+
+.tree-panel-name {
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.tree-panel-metric {
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.tree-panel-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.tree-panel-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+
+.tree-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tree-spec-val {
+  color: var(--accent-hover);
+  font-weight: 500;
+}
+
+.tree-panel-footer {
+  padding-top: 0.5rem;
+}
+
+.tree-audit-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'SF Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.stamp-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--button-bg);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: bold;
+}
+
+@media (max-width: 960px) {
+  .tree-diagram-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .tree-diagram-card {
+    padding: 1.75rem;
+  }
+  .tree-diagram-panel {
+    padding: 1.5rem;
+  }
+}
