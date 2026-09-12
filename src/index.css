@@ -63,84 +63,84 @@
   --max-width: 1400px;
   --gutter: clamp(1.5rem, 5vw, 4rem);
 
-  /* DARK THEME (DEFAULT) - Near-Black / Dark Green GIS Climate Intelligence */
-  --bg-primary: #0B120E;
-  --bg-secondary: #101A15;
-  --bg-tertiary: #16241D;
-  --bg-deep: #070D0A;
+  /* DARK THEME (DEFAULT) - Near-Black / Rich Emerald GIS Climate Intelligence */
+  --bg-primary: #0A140F;
+  --bg-secondary: #0F1F17;
+  --bg-tertiary: #14281F;
+  --bg-deep: #060B08;
   
-  --surface: rgba(18, 30, 23, 0.75);
-  --surface-raised: rgba(24, 40, 30, 0.88);
-  --surface-hover: rgba(32, 54, 40, 0.95);
-  --surface-card: rgba(14, 25, 18, 0.8);
+  --surface: rgba(15, 30, 22, 0.82);
+  --surface-raised: rgba(20, 42, 30, 0.92);
+  --surface-hover: rgba(28, 58, 42, 0.96);
+  --surface-card: rgba(12, 24, 18, 0.85);
   
   --text-primary: #F0FDF4;
-  --text-secondary: #B4DFCA;
-  --text-muted: #71A88B;
-  --text-inverse: #0B120E;
+  --text-secondary: #86EFAC;
+  --text-muted: #4ADE80;
+  --text-inverse: #0A140F;
   
-  --accent: #2D8A62;
-  --accent-hover: #3EB380;
-  --accent-soft: #142B20;
-  --accent-mineral: #237A70;
-  --accent-blue: #122E2F;
-  --accent-glow: rgba(45, 138, 98, 0.22);
+  --accent: #22C55E;
+  --accent-hover: #4ADE80;
+  --accent-soft: #14532D;
+  --accent-mineral: #10B981;
+  --accent-blue: #06B6D4;
+  --accent-glow: rgba(34, 197, 94, 0.32);
   
-  --gis-line: rgba(45, 138, 98, 0.15);
-  --gis-line-blue: rgba(55, 160, 140, 0.12);
+  --gis-line: rgba(34, 197, 94, 0.22);
+  --gis-line-blue: rgba(6, 182, 212, 0.18);
   
-  --button-bg: #1B5C40;
-  --button-bg-hover: #237552;
+  --button-bg: #15803D;
+  --button-bg-hover: #166534;
   --button-text: #ffffff;
   
-  --border: rgba(45, 138, 98, 0.18);
-  --border-strong: rgba(45, 138, 98, 0.35);
-  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border: rgba(34, 197, 94, 0.25);
+  --border-strong: rgba(34, 197, 94, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.08);
   
-  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  --shadow-elevated: 0 20px 50px -15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(45, 138, 98, 0.06);
+  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --shadow-elevated: 0 20px 50px -15px rgba(0, 0, 0, 0.75), 0 0 25px rgba(34, 197, 94, 0.12);
 }
 
 /* ==========================================
-   LIGHT THEME - Warm Off-White / Pale Sage / Soft Sky Blue
+   LIGHT THEME - Rich Warm Cream & Vibrant Forest Green
    ========================================== */
 [data-theme='light'] {
-  --bg-primary: #FBF8F3;
-  --bg-secondary: #F4EFE6;
-  --bg-tertiary: #EAE3D5;
-  --bg-deep: #F8F4ED;
+  --bg-primary: #FAF5EB;
+  --bg-secondary: #F3EBDC;
+  --bg-tertiary: #E8DCC8;
+  --bg-deep: #FAF7F0;
   
-  --surface: rgba(255, 252, 246, 0.88);
+  --surface: rgba(255, 252, 245, 0.92);
   --surface-raised: #FFFFFF;
-  --surface-hover: #F6F1E6;
-  --surface-card: rgba(255, 252, 246, 0.92);
+  --surface-hover: #F5ECD8;
+  --surface-card: rgba(255, 252, 245, 0.95);
   
-  --text-primary: #12221A;
-  --text-secondary: #2C4537;
-  --text-muted: #5A7566;
+  --text-primary: #0D2619;
+  --text-secondary: #166534;
+  --text-muted: #15803D;
   --text-inverse: #FFFFFF;
   
-  --accent: #237A55;
-  --accent-hover: #1D6646;
-  --accent-soft: #D8E5DB;
-  --accent-mineral: #4E8785;
-  --accent-blue: #749DB0;
-  --accent-sky: #D0E3EA;
-  --accent-glow: rgba(35, 122, 85, 0.15);
+  --accent: #15803D;
+  --accent-hover: #166534;
+  --accent-soft: #DCFCE7;
+  --accent-mineral: #0D9488;
+  --accent-blue: #0284C7;
+  --accent-sky: #BAE6FD;
+  --accent-glow: rgba(21, 128, 61, 0.28);
   
-  --gis-line: rgba(45, 90, 65, 0.12);
-  --gis-line-blue: rgba(50, 100, 120, 0.1);
+  --gis-line: rgba(21, 128, 61, 0.2);
+  --gis-line-blue: rgba(2, 132, 199, 0.16);
   
-  --button-bg: #237A55;
-  --button-bg-hover: #1D6646;
+  --button-bg: #15803D;
+  --button-bg-hover: #166534;
   --button-text: #ffffff;
   
-  --border: rgba(45, 90, 65, 0.16);
-  --border-strong: rgba(45, 90, 65, 0.32);
-  --border-subtle: rgba(18, 34, 26, 0.08);
+  --border: rgba(21, 128, 61, 0.25);
+  --border-strong: rgba(21, 128, 61, 0.45);
+  --border-subtle: rgba(13, 38, 25, 0.1);
   
-  --shadow-soft: 0 10px 30px -5px rgba(18, 34, 26, 0.06);
-  --shadow-elevated: 0 20px 45px -10px rgba(18, 34, 26, 0.12), 0 0 20px rgba(35, 122, 85, 0.06);
+  --shadow-soft: 0 10px 30px -5px rgba(13, 38, 25, 0.08);
+  --shadow-elevated: 0 20px 45px -10px rgba(13, 38, 25, 0.14), 0 0 25px rgba(21, 128, 61, 0.1);
 }
 
 /* --- Reset --- */

@@ -151,6 +151,66 @@ function DynamicClimateCanvas() {
       });
 
       // ----------------------------------------------------
+      // B2. ELEGANT BACKGROUND SWAYING OAK & CEDAR TREES (Dark & Light Mode)
+      // ----------------------------------------------------
+      const treeColor = isLight ? 'rgba(21, 128, 61, 0.16)' : 'rgba(34, 197, 94, 0.2)';
+      const trunkColor = isLight ? 'rgba(15, 75, 38, 0.2)' : 'rgba(22, 163, 74, 0.22)';
+      const treePositions = [0.05, 0.2, 0.42, 0.62, 0.8, 0.93];
+
+      treePositions.forEach((posRatio, tIdx) => {
+        const treeX = width * posRatio;
+        const treeY = height;
+        const treeH = 115 + (tIdx % 3) * 35;
+        const treeSway = Math.sin(step * 0.6 + tIdx) * 8;
+
+        ctx.save();
+        ctx.translate(treeX, treeY);
+
+        // Curved Tapered Trunk
+        ctx.beginPath();
+        ctx.moveTo(-5, 0);
+        ctx.quadraticCurveTo(-2 + treeSway * 0.2, -treeH * 0.4, treeSway * 0.4, -treeH * 0.7);
+        ctx.lineTo(treeSway * 0.5, -treeH * 0.7);
+        ctx.quadraticCurveTo(2 + treeSway * 0.2, -treeH * 0.4, 5, 0);
+        ctx.closePath();
+        ctx.fillStyle = trunkColor;
+        ctx.fill();
+
+        // Swaying Leaf Canopy Cloud Clusters
+        const cx = treeSway * 0.5;
+        const cy = -treeH * 0.78;
+        const scale = 0.85 + (tIdx % 3) * 0.15;
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.scale(scale, scale);
+
+        ctx.beginPath();
+        ctx.moveTo(-45, 15);
+        ctx.bezierCurveTo(-70, -5, -75, -45, -45, -65);
+        ctx.bezierCurveTo(-30, -85, 5, -90, 30, -72);
+        ctx.bezierCurveTo(60, -90, 85, -60, 72, -30);
+        ctx.bezierCurveTo(85, 0, 70, 32, 40, 25);
+        ctx.bezierCurveTo(15, 35, -25, 32, -45, 15);
+        ctx.closePath();
+
+        ctx.fillStyle = treeColor;
+        ctx.fill();
+
+        // Inner Leaf Layer Texture
+        ctx.beginPath();
+        ctx.moveTo(-30, -10);
+        ctx.bezierCurveTo(-45, -30, -25, -55, 5, -45);
+        ctx.bezierCurveTo(28, -55, 45, -30, 25, -10);
+        ctx.closePath();
+        ctx.fillStyle = isLight ? 'rgba(253, 230, 138, 0.12)' : 'rgba(187, 247, 208, 0.15)';
+        ctx.fill();
+
+        ctx.restore();
+        ctx.restore();
+      });
+
+      // ----------------------------------------------------
       // C. Draw Fluid Topographic Contour Sine Waves
       // ----------------------------------------------------
       const waveColors = isLight
