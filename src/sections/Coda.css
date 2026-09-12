@@ -1,11 +1,12 @@
 .coda {
   position: relative;
   min-height: 100vh;
-  background: var(--bg-tertiary);
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.9)),
+              url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+  background-size: cover;
   z-index: 20;
   border-top: 1px solid var(--border);
-  transition: background var(--duration-normal) var(--ease-in-out),
-              border-color var(--duration-normal) var(--ease-in-out);
+  transition: border-color var(--duration-normal) var(--ease-in-out);
 }
 
 .coda__content {

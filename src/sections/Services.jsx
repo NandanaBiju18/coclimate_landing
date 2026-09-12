@@ -8,6 +8,7 @@ const SERVICES = [
     description:
       'We turn unused rural land into managed green zones. Local farmers plant, maintain and monitor them. The zones build towards carbon credits over time.',
     tag: 'Land · Restoration · Credits',
+    image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 'green-auditing',
@@ -16,6 +17,7 @@ const SERVICES = [
     description:
       'We audit and digitise the green cover on your campus or across your organisation — so you know what every tree is sequestering.',
     tag: 'Assessment · GHG · ESG',
+    image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=800&auto=format&fit=crop',
   },
   {
     id: 'pre-certification',
@@ -24,6 +26,7 @@ const SERVICES = [
     description:
       'We take you from planting to monetisation, preparing your projects for carbon credit validation under CDM, ICM and other frameworks.',
     tag: 'Certification · CDM · ICM',
+    image: 'https://images.unsplash.com/photo-1469122312224-c5846569feb1?q=80&w=800&auto=format&fit=crop',
   },
 ];
 
@@ -56,6 +59,7 @@ export default function Services() {
                 <span className="services__card-num t-mono">{s.number}</span>
                 <span className="services__card-tag t-label">{s.tag}</span>
               </div>
+              <img src={s.image} alt={s.title} style={{ width: '100%', height: '160px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1.5rem', opacity: '0.9' }} />
               <h3 className="services__card-title">{s.title}</h3>
               <p className="services__card-desc t-body">{s.description}</p>
             </div>
