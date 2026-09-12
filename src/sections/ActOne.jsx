@@ -43,6 +43,28 @@ export default function ActOne({ isMobile = false }) {
 
   return (
     <section ref={sectionRef} className="act-one" id="discover">
+      {/* Real Forest Tree Landscape Backdrop with GIS Monitoring Boundary */}
+      <div className="act-one__forest-backdrop" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=1600&auto=format&fit=crop"
+          alt="Lush real forest canopy"
+          className="act-one__forest-img"
+        />
+        <div className="act-one__forest-shade" />
+
+        {/* Plot 01 GIS Boundary Overlay */}
+        <div className="act-one__boundary-card">
+          <div className="act-one__boundary-header">
+            <span className="status-dot" />
+            <span className="act-one__boundary-title">PLOT 01 MONITORING AREA</span>
+          </div>
+          <div className="act-one__boundary-pins">
+            <span className="act-one__pin"><span></span>Site 01 · 10.78°N</span>
+            <span className="act-one__pin"><span></span>Site 02 · 76.65°E</span>
+          </div>
+        </div>
+      </div>
+
       <div className="act-one__canvas">
         {isVisible && (
           <Suspense fallback={null}>
@@ -55,24 +77,19 @@ export default function ActOne({ isMobile = false }) {
         <div className="act-one__hero-text">
           <div className="badge-glow act-one__float-slow">
             <span className="badge-glow__dot" />
-            <span>Paradigm Shift in Environmental Auditing</span>
+            <span>MONITORING, REPORTING & VERIFICATION</span>
           </div>
 
-          {/* Constant motion headline — no scroll drop-down reveal */}
           <h1 className="t-display act-one__headline act-one__headline--constant-motion">
-            The planet doesn't need promises.
-          </h1>
-          <h1 className="t-display act-one__headline act-one__headline--accent act-one__headline--constant-motion-accent">
-            It needs proof.
+            Proof the trees are still <em>standing.</em>
           </h1>
           
           <p className="t-subheading act-one__sub act-one__float-slow-delay">
-            Land-based climate projects, fully monitored with technology. Carbon-free zones, green auditing, and carbon credit pre-certification — with proofs you can verify.
+            Real land. Field evidence. Human verification. A shared record of restoration that you can check, not just trust.
           </p>
 
           <div className="act-one__cta-group">
             <MagneticButton href="#contact">Schedule a Call</MagneticButton>
-            <MagneticButton href="#calculator" className="magnetic-btn--outline">Simulate Impact</MagneticButton>
           </div>
 
           {/* Hero Live Metric Ticker with constant floating pulse */}
