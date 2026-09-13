@@ -27,25 +27,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.58;
-  filter: saturate(1.4) contrast(1.15) brightness(0.96);
+  opacity: 1.0;
+  filter: saturate(1.4) contrast(1.15) brightness(1.1);
   transition: opacity 0.6s ease, filter 0.6s ease;
 }
 
 [data-theme='light'] .climate-bg__forest-img {
-  opacity: 0.72;
-  filter: saturate(1.5) contrast(1.18) brightness(1.02);
+  opacity: 1.0;
+  filter: saturate(1.5) contrast(1.18) brightness(1.05);
   mix-blend-mode: multiply;
 }
 
 .climate-bg__forest-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 40%, rgba(10, 20, 15, 0.22) 0%, var(--bg-primary) 85%);
+  background: radial-gradient(circle at 50% 40%, rgba(10, 20, 15, 0.1) 0%, rgba(10, 20, 15, 0.4) 85%);
 }
 
 [data-theme='light'] .climate-bg__forest-overlay {
-  background: radial-gradient(circle at 50% 40%, rgba(248, 244, 236, 0.15) 0%, rgba(248, 244, 236, 0.72) 88%);
+  background: radial-gradient(circle at 50% 40%, rgba(248, 244, 236, 0.05) 0%, rgba(248, 244, 236, 0.3) 88%);
 }
 
 /* ── Dynamic Canvas Layer ── */

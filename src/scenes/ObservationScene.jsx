@@ -33,7 +33,7 @@ export default function ObservationScene({ progress = 0, isMobile = false }) {
         <directionalLight position={[4, 8, 3]} intensity={isLight ? 1.1 : 0.7} color={isLight ? '#237A55' : '#3EB380'} />
         <fog attach="fog" args={[fogColor, 12, 38]} />
 
-        <ParticleField progress={progress} isMobile={isMobile} isLight={isLight} />
+        {/* <ParticleField progress={progress} isMobile={isMobile} isLight={isLight} /> */}
       </Suspense>
     </Canvas>
   );

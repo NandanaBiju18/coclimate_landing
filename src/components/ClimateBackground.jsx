@@ -227,23 +227,23 @@ function DynamicClimateCanvas() {
       // ----------------------------------------------------
       // F. Drifting Luminescent Pollen / Spore Particles
       // ----------------------------------------------------
-      pollen.forEach((p) => {
-        p.y += p.vy;
-        p.x += p.vx + Math.cos(step + p.y * 0.01) * 0.35;
+      // pollen.forEach((p) => {
+      //   p.y += p.vy;
+      //   p.x += p.vx + Math.cos(step + p.y * 0.01) * 0.35;
 
-        if (p.y < -10) {
-          p.y = height + 10;
-          p.x = Math.random() * width;
-        }
+      //   if (p.y < -10) {
+      //     p.y = height + 10;
+      //     p.x = Math.random() * width;
+      //   }
 
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.fillStyle = isLight
-          ? `rgba(34, 197, 94, ${p.alpha * 0.85})`
-          : `rgba(167, 243, 208, ${p.alpha})`;
-        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-        ctx.restore();
-      });
+      //   ctx.save();
+      //   ctx.translate(p.x, p.y);
+      //   ctx.fillStyle = isLight
+      //     ? `rgba(34, 197, 94, ${p.alpha * 0.85})`
+      //     : `rgba(167, 243, 208, ${p.alpha})`;
+      //   ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      //   ctx.restore();
+      // });
 
       // ----------------------------------------------------
       // G. Telemetry Micro-Diamond Nodes & Vector Mesh
@@ -251,49 +251,49 @@ function DynamicClimateCanvas() {
       const nodeColor = isLight ? 'rgba(21, 128, 61, 0.5)' : 'rgba(74, 222, 128, 0.6)';
       const lineColor = isLight ? 'rgba(21, 128, 61, 0.13)' : 'rgba(34, 197, 94, 0.16)';
 
-      for (let i = 0; i < nodes.length; i++) {
-        const n1 = nodes[i];
-        n1.x += n1.vx;
-        n1.y += n1.vy;
+      // for (let i = 0; i < nodes.length; i++) {
+      //   const n1 = nodes[i];
+      //   n1.x += n1.vx;
+      //   n1.y += n1.vy;
 
-        if (n1.x < 0 || n1.x > width) n1.vx *= -1;
-        if (n1.y < 0 || n1.y > height) n1.vy *= -1;
+      //   if (n1.x < 0 || n1.x > width) n1.vx *= -1;
+      //   if (n1.y < 0 || n1.y > height) n1.vy *= -1;
 
-        const dxMouse = mouseX - n1.x;
-        const dyMouse = mouseY - n1.y;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        if (distMouse < 140) {
-          n1.x -= (dxMouse / distMouse) * 0.8;
-          n1.y -= (dyMouse / distMouse) * 0.8;
-        }
+      //   const dxMouse = mouseX - n1.x;
+      //   const dyMouse = mouseY - n1.y;
+      //   const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+      //   if (distMouse < 140) {
+      //     n1.x -= (dxMouse / distMouse) * 0.8;
+      //     n1.y -= (dyMouse / distMouse) * 0.8;
+      //   }
 
-        // Draw 4-Pointed Micro-Diamond
-        const sz = n1.size;
-        ctx.beginPath();
-        ctx.moveTo(n1.x, n1.y - sz);
-        ctx.lineTo(n1.x + sz, n1.y);
-        ctx.lineTo(n1.x, n1.y + sz);
-        ctx.lineTo(n1.x - sz, n1.y);
-        ctx.closePath();
-        ctx.fillStyle = nodeColor;
-        ctx.fill();
+      //   // Draw 4-Pointed Micro-Diamond
+      //   const sz = n1.size;
+      //   ctx.beginPath();
+      //   ctx.moveTo(n1.x, n1.y - sz);
+      //   ctx.lineTo(n1.x + sz, n1.y);
+      //   ctx.lineTo(n1.x, n1.y + sz);
+      //   ctx.lineTo(n1.x - sz, n1.y);
+      //   ctx.closePath();
+      //   ctx.fillStyle = nodeColor;
+      //   ctx.fill();
 
-        for (let j = i + 1; j < nodes.length; j++) {
-          const n2 = nodes[j];
-          const dx = n2.x - n1.x;
-          const dy = n2.y - n1.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+      //   for (let j = i + 1; j < nodes.length; j++) {
+      //     const n2 = nodes[j];
+      //     const dx = n2.x - n1.x;
+      //     const dy = n2.y - n1.y;
+      //     const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 135) {
-            ctx.beginPath();
-            ctx.moveTo(n1.x, n1.y);
-            ctx.lineTo(n2.x, n2.y);
-            ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 1 * (1 - dist / 135);
-            ctx.stroke();
-          }
-        }
-      }
+      //     if (dist < 135) {
+      //       ctx.beginPath();
+      //       ctx.moveTo(n1.x, n1.y);
+      //       ctx.lineTo(n2.x, n2.y);
+      //       ctx.strokeStyle = lineColor;
+      //       ctx.lineWidth = 1 * (1 - dist / 135);
+      //       ctx.stroke();
+      //     }
+      //   }
+      // }
 
       animationFrameId = requestAnimationFrame(render);
     };

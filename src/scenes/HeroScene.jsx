@@ -35,7 +35,7 @@ export default function HeroScene({ progress = 0, isMobile = false }) {
         <directionalLight position={[-4, 4, -4]} intensity={0.25} color={isLight ? '#1B5C40' : '#142B20'} />
         <fog attach="fog" args={[fogColor, 12, 38]} />
 
-        <ParticleField progress={particleProgress} isMobile={isMobile} isLight={isLight} />
+        {/* <ParticleField progress={particleProgress} isMobile={isMobile} isLight={isLight} /> */}
       </Suspense>
     </Canvas>
   );
